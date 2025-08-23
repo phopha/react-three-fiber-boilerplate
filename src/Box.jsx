@@ -1,8 +1,10 @@
-export default function Box(){
+export default function Box(props) {
+
+  console.log(props);
   return (
-    <mesh>
-        <boxGeometry />
-        <meshBasicMaterial color={0x0000ff} wireframe />
+    <mesh {...props}>
+      <boxGeometry />
+      <meshBasicMaterial color={0x00ff00} wireframe={false} />
     </mesh>
   )
 }

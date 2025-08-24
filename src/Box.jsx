@@ -1,17 +1,19 @@
-import { useRef, useEffect} from 'react'
+import { useRef } from 'react'
+import { useFrame } from '@react-three/fiber'
+
 export default function Box(props) {
-  const ref = useRef({})
+  const ref = useRef()
 
-  useEffect(() => {
-    console.log(ref)
-
+  useFrame((state, delta) => {
+    ref.current.rotation.x += 1 * delta
+    ref.current.rotation.y += 0.5 * delta
+    ref.current.position.y = Math.sin(state.clock.getElapsedTime())
   })
-  
-  // console.log(materialRef)
+
   return (
     <mesh {...props} ref={ref}>
       <boxGeometry />
-      <meshBasicMaterial color={0x00ff00} wireframe={false} />
+      <meshBasicMaterial color={0x00ff00} wireframe />
     </mesh>
   )
 }
